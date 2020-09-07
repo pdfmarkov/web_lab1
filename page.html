@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <title>Web, Lab1, Markov P3210</title>
+    <link rel="shortcut icon" href="pictures/favicon.ico" type="image/x-icon">
+    <style>
+
+        @font-face {
+            font-family: "Caviar Dreams";
+            src: url("fonts/caviar-dreams.ttf");
+        }
+
+        * {
+            font-family: "Caviar Dreams", serif;
+            text-align: center;
+            font-weight: bold;
+            color: #edb021;
+        }
+
+        header{
+            font-size: 0.7em;
+            top: 0;
+        }
+
+        footer{
+            bottom: 0;
+        }
+
+        header, footer{
+            width: 100%;
+            position: fixed;
+            color: #edb021;
+            background-color: #1c222a;
+            left: 0;
+        }
+
+        body {
+            background-color: #1c222a;
+            padding-top: 9%;
+            padding-bottom: 10%;
+        }
+
+        main{
+            background-color: #1c222a;
+            top: 5%;
+            margin-left: 10%;
+            margin-right: 10%;
+            bottom: 5%;
+        }
+
+        #credit > img {
+            vertical-align: middle;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        #credit > a {
+            vertical-align: middle;
+            font-size: 15px;
+            text-decoration: none;
+            color: #edb021;
+        }
+
+        .shaded {
+            box-shadow: 0 0 10px 1px #825b00;
+        }
+
+        .shaded:hover, .animated:hover {
+            transition: 0.5s;
+        }
+
+        .shaded:hover {
+            box-shadow: 0 0 20px 2px #825b00;
+        }
+
+        .animated:hover {
+           transform: scale(1.05);
+        }
+        .radio_btn{
+            position: center;
+        }
+
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="script.js"> </script>
+</head>
+<body>
+<header class="shaded animated">
+    <h1>Веб-программирование, Лаб. 1, Вариант № 2114</h1>
+    <div id="credit"><img src="pictures/avatar.png" alt="Аватар разработчика" /> <a href="https://github.com/pdfmarkov" class="illuminated animated" title="Перейти к профилю Github разработчика">Марков Петр Денисович, P3210</a></div>
+</header>
+<main>
+        <div class="container task">
+            <h4>Разработанная HTML-страница должна удовлетворять следующим требованиям:</h4>
+            <h5>•Для расположения текстовых и графических элементов необходимо использовать блочную верстку.<br>
+                •Данные формы должны передаваться на обработку посредством GET-запроса.<br>
+                •Таблицы стилей должны располагаться в самом веб-документе.<br>
+                •При работе с CSS должно быть продемонстрировано использование селекторов элементов, селекторов дочерних элементов, селекторов потомств, селекторов псевдоклассов а также такие свойства стилей CSS, как наследование и
+            каскадирование.<br>
+                •HTML-страница должна иметь "шапку", содержащую ФИО студента, номер группы и новер варианта. При оформлении шапки необходимо явным образом задать шрифт (fantasy), его цвет и размер в каскадной таблице стилей.<br>
+            тступы элементов ввода должны задаваться в процентах.<br>
+                •Страница должна содержать сценарий на языке JavaScript, осуществляющий валидацию значений, вводимых пользователем в поля формы. Любые некорректные значения (например, буквы в координатах точки или отрицательный
+            радиус) должны блокироваться.</h5>
+
+            <img class="task_image" src="pictures/img.png" alt="Картинка">
+        </div>
+
+        <div class="container form">
+            <form id="main-form">
+                <table class="radio_btn">
+                    <tr>
+                        <td></td>
+                        <td><label for="-3"></label><input type="radio" id="-3" name="X" value="-3" onclick="pressX(this.id)" >-3</td>
+                        <td><label for="-2"></label><input type="radio" id="-2" name="X" value="-2" onclick="pressX(this.id)" >-2</td>
+                        <td><label for="-1"></label><input type="radio" id="-1" name="X" value="-1" onclick="pressX(this.id)" >-1</td>
+                    </tr>
+                    <tr>
+                        <td> X = </td>
+                        <td><label for="0"></label><input type="radio" id="0" name="X" value="0" onclick="pressX(this.id)" >0</td>
+                        <td><label for="1"></label><input type="radio" id="1" name="X" value="1" onclick="pressX(this.id)" >1</td>
+                        <td><label for="2"></label><input type="radio" id="2" name="X" value="2" onclick="pressX(this.id)" >2</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><label for="3"></label><input type="radio" id="3" name="X" value="3" onclick="pressX(this.id)" >3</td>
+                        <td><label for="4"></label><input type="radio" id="4" name="X" value="4" onclick="pressX(this.id)" >4</td>
+                        <td><label for="5"></label><input type="radio" id="5" name="X" value="5" onclick="pressX(this.id)" >5</td>
+                    </tr>
+                </table>
+
+                <label for="Y"> Y = </label>
+                <input class="input_Y" id="Y" type="text" name="Y" placeholder="(-5 .. 3)"><br>
+
+                <label for="R"> R = </label>
+                <input class="input_R" id="R" type="text" name="R" placeholder="(2 .. 5)"><br>
+
+                <input type="button" onclick="ask()" value=" Поiхали ">
+                <input type="button" onclick="reset()" value=" Сбросiть ">
+            </form>
+        </div>
+    <div id="container frame">
+        <table id="resultTable">
+            <tr>
+                <th>X</th>
+                <th>Y</th>
+                <th>R</th>
+                <th>Результат</th>
+                <th>t сейчас</th>
+                <th>t выполнения</th>
+            </tr>
+        </table>
+    </div>
+</main>
+<footer class="shaded animated">ИТМО<br>2020</footer>
+</body>
+</html>
