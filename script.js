@@ -51,11 +51,8 @@ function check(){
     } return choose;
 }
 
-
 function ask() {
     if(check()) jQuery.get('check.php', {'X':x, 'Y':y, 'R':r}, function (data) {document.getElementById('resultTable').innerHTML+=data;});
-
-
 }
 
 function reset(){

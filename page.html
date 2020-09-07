@@ -78,11 +78,62 @@
         .animated:hover {
            transform: scale(1.05);
         }
-        .radio_btn{
-            position: center;
+
+        .container{
+            text-align: center;
+
         }
 
+        #resultTable{
+            border-collapse: collapse;
+            border-radius:6px;
+            overflow:hidden;
+            max-width:800px;
+            width:100%;
+            margin:0 auto;
+        }
+        #resultTable td, #resultTable th, .radio_btn td, .radio_btn th{
+            text-align: center;
+            padding: 8px;
+        }
 
+        #resultTable td, .radio_btn td{
+            border-right: 1px solid #edb021;
+            font-size: 12px;
+        }
+        input[type=button]{
+             background-color: #1c222a;
+             padding: 0;
+             width: 120px;
+             height: 50px;
+             box-sizing: border-box;
+             border-collapse: collapse;
+             border-radius:6px;
+             text-align: center;
+             font-size: 14px;
+             cursor: pointer;
+         }
+        input[type=text]{
+            background-color: #1c222a;
+            padding: 0;
+            width: 140px;
+            height: 30px;
+            box-sizing: border-box;
+            border-collapse: collapse;
+            border-radius:6px;
+            text-align: center;
+            font-size: 14px;
+            cursor: text;
+        }
+        .radio_btn {
+            margin-left: 40%;
+            margin-right: 40%;
+        }
+        .radio_btn input[type=radio]{
+            text-align: center;
+            cursor: pointer;
+            font-size: 14px;
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="script.js"> </script>
@@ -101,13 +152,13 @@
                 •При работе с CSS должно быть продемонстрировано использование селекторов элементов, селекторов дочерних элементов, селекторов потомств, селекторов псевдоклассов а также такие свойства стилей CSS, как наследование и
             каскадирование.<br>
                 •HTML-страница должна иметь "шапку", содержащую ФИО студента, номер группы и новер варианта. При оформлении шапки необходимо явным образом задать шрифт (fantasy), его цвет и размер в каскадной таблице стилей.<br>
-            тступы элементов ввода должны задаваться в процентах.<br>
+                •Отступы элементов ввода должны задаваться в процентах.<br>
                 •Страница должна содержать сценарий на языке JavaScript, осуществляющий валидацию значений, вводимых пользователем в поля формы. Любые некорректные значения (например, буквы в координатах точки или отрицательный
             радиус) должны блокироваться.</h5>
 
             <img class="task_image" src="pictures/img.png" alt="Картинка">
         </div>
-
+        <p></p>
         <div class="container form">
             <form id="main-form">
                 <table class="radio_btn">
@@ -130,26 +181,27 @@
                         <td><label for="5"></label><input type="radio" id="5" name="X" value="5" onclick="pressX(this.id)" >5</td>
                     </tr>
                 </table>
-
+                <p></p>
                 <label for="Y"> Y = </label>
                 <input class="input_Y" id="Y" type="text" name="Y" placeholder="(-5 .. 3)"><br>
-
+                <p></p>
                 <label for="R"> R = </label>
                 <input class="input_R" id="R" type="text" name="R" placeholder="(2 .. 5)"><br>
-
+                <p></p>
                 <input type="button" onclick="ask()" value=" Поiхали ">
                 <input type="button" onclick="reset()" value=" Сбросiть ">
             </form>
         </div>
+    <p></p>
     <div id="container frame">
         <table id="resultTable">
             <tr>
-                <th>X</th>
-                <th>Y</th>
-                <th>R</th>
-                <th>Результат</th>
-                <th>t сейчас</th>
-                <th>t выполнения</th>
+                <td>X</td>
+                <td>Y</td>
+                <td>R</td>
+                <td>Результат</td>
+                <td>t сейчас</td>
+                <td>t выполнения</td>
             </tr>
         </table>
     </div>
