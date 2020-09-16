@@ -37,8 +37,9 @@ function check(){
         choose = false;
     }else {
         if (!/^(-?\d+)([.]\d+)?$/.test(r)) {
-            if(!fail) fail = 'Некорректный ввод R \n'; else fail += 'Некорректный ввод R \n';
-            choose = false;
+                if (!fail) fail = 'Некорректный ввод R \n'; else fail += 'Некорректный ввод R \n';
+                choose = false;
+
         } else if (r <= 2 || r >= 5) {
             if(!fail) fail = 'R вне диапозона \n'; else fail += 'R вне диапозона \n';
             choose = false;
@@ -52,7 +53,11 @@ function check(){
 }
 
 function ask() {
-    if(check()) jQuery.get('check.php', {'X':x, 'Y':y, 'R':r}, function (data) {document.getElementById('resultTable').innerHTML+=data;});
+    if(check())
+    {
+        jQuery("#resultTable tr").remove();
+        jQuery.get('check.php', {'X':x, 'Y':y, 'R':r}, function (data) {document.getElementById('resultTable').innerHTML+=data;});
+    }
 }
 
 function reset(){
