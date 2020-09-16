@@ -1,8 +1,8 @@
 <?php
-date_default_timezone_set('Europe/Moscow');
-
-session_start();
+@session_start();
 $start = microtime(true);
+if (!isset($_SESSION['arr'])) $_SESSION['arr'] = array();
+date_default_timezone_set('Europe/Moscow');
 
 if (!is_numeric($_GET["X"]) || !is_numeric($_GET["Y"]) || !is_numeric($_GET["R"]) || strlen($_GET["R"])>10 || strlen($_GET["Y"])>10 || strlen($_GET["X"])>10) {
     http_response_code(400);
@@ -24,8 +24,7 @@ if ($x<=-3 || $x>=5 || $y>3 || $y<-5 || $r<2 || $r>5) {
     exit;
 }
 
-echo "<div id='container frame'>
-        <table id='resultTable'>
+echo "<table id='resultTable'>
             <tr>
                 <td>X</td>
                 <td>Y</td>
@@ -52,7 +51,7 @@ if (!(is_numeric($x) && is_numeric($y) && is_numeric($r))) {
 foreach ($_SESSION['arr'] as $item) {
     echo $item;
 }
-echo "</table> </div>";
+echo "</table>";
 
 
 
