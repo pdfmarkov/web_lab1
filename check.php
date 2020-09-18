@@ -1,13 +1,17 @@
 <?php
+
 @session_start();
+
 $start = microtime(true);
 if (!isset($_SESSION['arr'])) $_SESSION['arr'] = array();
 date_default_timezone_set('Europe/Moscow');
 
-if (!is_numeric($_GET["X"]) || !is_numeric($_GET["Y"]) || !is_numeric($_GET["R"]) || strlen($_GET["R"])>10 || strlen($_GET["Y"])>10 || strlen($_GET["X"])>10) {
+if (!is_numeric($_GET["X"]) || !is_numeric($_GET["Y"]) || !is_numeric($_GET["R"]) ||
+    strlen($_GET["R"])>10 || strlen($_GET["Y"])>10 || strlen($_GET["X"])>10) {
     http_response_code(400);
     exit;
 }
+
 $x = (double) $_GET["X"];
 $y = (double) $_GET["Y"];
 $r = (double) $_GET["R"];
@@ -34,9 +38,8 @@ echo "<table id='resultTable'>
                 <td>t выполнения</td>
             </tr>";
 
-if (!(is_numeric($x) && is_numeric($y) && is_numeric($r))) {
-    array_push ($_SESSION['arr'],"<tr> <td>ARGUMENTS ARE INCORRECT!</td> </tr>");
-} else { if (
+
+    if (
     ($x >= 0 && $y >= 0 && $y <= ($r / 2) && $x <= $r) ||
     ($x <= 0 && $y >= 0 && ($x * $x + $y * $y) <= ($r / 2) * ($r / 2)) ||
     ($x >= 0 && $y <= 0 && $y >= $x - $r)
@@ -47,10 +50,9 @@ if (!(is_numeric($x) && is_numeric($y) && is_numeric($r))) {
     $time = microtime(true) - $start;
     array_push ($_SESSION['arr'], "<tr> <td>$x</td> <td>$y</td> <td>$r</td>
                     <td><b>$check</b></td> <td>$currentTime</td> <td>$time</td> </tr>");
-}
-foreach ($_SESSION['arr'] as $item) {
-    echo $item;
-}
+
+foreach ($_SESSION['arr'] as $item) echo $item;
+
 echo "</table>";
 
 
