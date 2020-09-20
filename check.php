@@ -7,7 +7,13 @@ if (!isset($_SESSION['arr'])) $_SESSION['arr'] = array();
 date_default_timezone_set('Europe/Moscow');
 
 if (!is_numeric($_GET["X"]) || !is_numeric($_GET["Y"]) || !is_numeric($_GET["R"]) ||
-    strlen($_GET["R"])>10 || strlen($_GET["Y"])>10 || strlen($_GET["X"])>10) {
+    (((substr($_GET["R"],0,1)==="1") || (substr($_GET["R"],0,1)==="5")) &&
+    strlen($_GET["R"])>10) ||
+    (((substr($_GET["Y"],0,1)==="3") || (substr($_GET["Y"],0,2)==="-5")) &&
+    strlen($_GET["Y"])>10) ||
+    (((substr($_GET["X"],0,2)==="-4") || (substr($_GET["X"],0,1)==="6")) &&
+    strlen($_GET["X"])>10))
+{
     http_response_code(400);
     exit;
 }
@@ -23,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET') {
     exit;
 }
 
-if ($x<=-3 || $x>=5 || $y>3 || $y<-5 || $r<2 || $r>5) {
+if ($x<-3 || $x>5 || $y>=3 || $y<=-5 || $r<=2 || $r>=5) {
     http_response_code(400);
     exit;
 }
