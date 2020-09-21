@@ -22,7 +22,7 @@ function check(){
         if(!fail) fail = 'Введите Y \n'; else fail += 'Введите Y \n';
         choose = false;
     }else {
-        if (!/^(-?\d+)([.]\d+)?$/.test(y)) {
+        if (!/^(-?\d+)([,.]\d+)?$/.test(y)) {
             if(!fail) fail = 'Некорректный ввод Y \n'; else fail += 'Некорректный ввод Y \n';
             choose = false;
         } else if (y <= -5 || y >= 3) {
@@ -36,7 +36,7 @@ function check(){
         if(!fail) fail = 'Введите R \n'; else fail += 'Введите R \n';
         choose = false;
     }else {
-        if (!/^(-?\d+)([.]\d+)?$/.test(r)) {
+        if (!/^(-?\d+)([,.]\d+)?$/.test(r)) {
                 if (!fail) fail = 'Некорректный ввод R \n'; else fail += 'Некорректный ввод R \n';
                 choose = false;
 

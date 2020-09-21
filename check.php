@@ -2,11 +2,18 @@
 
 @session_start();
 
+if ($_SERVER['REQUEST_METHOD'] != 'GET') {
+    http_response_code(400);
+    exit;
+}
+
 $start = microtime(true);
 if (!isset($_SESSION['arr'])) $_SESSION['arr'] = array();
 date_default_timezone_set('Europe/Moscow');
 
-if (!is_numeric($_GET["X"]) || !is_numeric($_GET["Y"]) || !is_numeric($_GET["R"]) ||
+if (!is_numeric(str_replace(",",".", $_GET["X"])) ||
+    !is_numeric(str_replace(",",".", $_GET["Y"])) ||
+    !is_numeric(str_replace(",",".", $_GET["R"])) ||
     (((substr($_GET["R"],0,1)==="1") || (substr($_GET["R"],0,1)==="5")) &&
     strlen($_GET["R"])>10) ||
     (((substr($_GET["Y"],0,1)==="3") || (substr($_GET["Y"],0,2)==="-6")) &&
@@ -18,16 +25,11 @@ if (!is_numeric($_GET["X"]) || !is_numeric($_GET["Y"]) || !is_numeric($_GET["R"]
     exit;
 }
 
-$x = (double) $_GET["X"];
-$y = (double) $_GET["Y"];
-$r = (double) $_GET["R"];
+$x = (double) str_replace(",",".", $_GET["X"]);
+$y = (double) str_replace(",",".", $_GET["Y"]);
+$r = (double) str_replace(",",".", $_GET["R"]);
 $check="";
 $currentTime = date("H:i:s");
-
-if ($_SERVER['REQUEST_METHOD'] != 'GET') {
-    http_response_code(400);
-    exit;
-}
 
 if ($x<-3 || $x>5 || $y>=3 || $y<=-5 || $r<=2 || $r>=5) {
     http_response_code(400);
